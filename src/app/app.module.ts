@@ -7,9 +7,10 @@ import { SwiperModule } from 'swiper/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeNewComponent } from './home-new/home-new.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomeNewComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

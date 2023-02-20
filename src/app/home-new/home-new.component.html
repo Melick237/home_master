@@ -1,5 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/welcome3" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
 
+  <ion-grid class="grid-1">
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size="6" class="title"><h1>Please select</h1></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+
+    <ion-img class="img" src="../../assets/img/home4.jpg" alt=""></ion-img>
+
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size="5" class="title"> <ion-button class="button-next" expand="block" [routerLink]="['/tabs/welcome3']"> Create Household </ion-button> </ion-col>
+      <ion-col size="5" class="title"> <ion-button class="button-next" expand="block" [routerLink]="['/tabs/welcome3']"> Join Household </ion-button> </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
 
 
 </ion-content>

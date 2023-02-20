@@ -15,6 +15,6 @@ import { HomeNewComponent } from '../home-new/home-new.component';
     FormsModule,
     TabsPageRoutingModule
   ],
-  declarations: [TabsPage, HomeNewComponent]
+  declarations: [TabsPage]
 })
 export class TabsPageModule {}
