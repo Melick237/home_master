@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
+  public images = {
+                    src: '../assets/img/home1.jpg',
+                    name: 'welcome2_img'
+                  };
+
   constructor() {}
 
 }
