@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeNewComponent } from './pages/home-new/home-new.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { AddRoomComponent } from './components/forms/add-room/add-room.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,6 +19,8 @@ import { AddRoomComponent } from './components/forms/add-room/add-room.component
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     SwiperModule,
     QRCodeModule
   ],

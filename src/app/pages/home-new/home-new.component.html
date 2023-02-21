@@ -32,18 +32,11 @@
   <ion-card class="ion-text-center">
     <ion-card-content>
       <qrcode
-      [qrdata]="'Your data string'"
+      [qrdata]="dataToBeScanned"
       [width]="256"
       [errorCorrectionLevel]="'M'"
       ></qrcode>
     </ion-card-content>
   </ion-card>
 
-  <ion-button class="button-next ion-margin" expand="block" (click)="startScan()"> Scan {{permission ? 1 : 2}} </ion-button>
-
-  <ion-item>
-    <ion-label class="ion-text-wrap">
-      Scanned result: {{scannedResult}} gf  {{permission}}
-    </ion-label>
-  </ion-item>
 </ion-content>

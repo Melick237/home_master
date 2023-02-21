@@ -13,6 +13,7 @@ export class HomeNewComponent implements OnInit, OnDestroy {
   scannedResult : any;
   content_visibility = '';
   permission  : any;
+  dataToBeScanned = 'Your data string';
 
   scanActive: boolean = false;
 
@@ -59,7 +60,7 @@ export class HomeNewComponent implements OnInit, OnDestroy {
       this.content_visibility = '';
       if(result?.hasContent) {
         this.scannedResult = result.content;
-        console.log(this.scannedResult);
+        this.signUpToRoom(this.scannedResult);
       }
     } catch(e) {
       console.log(e);
@@ -78,4 +79,7 @@ export class HomeNewComponent implements OnInit, OnDestroy {
       this.stopScan();
   }
 
+  signUpToRoom(roomId: string) {
+    console.log(roomId);
+  }
 }
