@@ -7,15 +7,19 @@ import { SwiperModule } from 'swiper/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeNewComponent } from './home-new/home-new.component';
+import { HomeNewComponent } from './pages/home-new/home-new.component';
+import { QRCodeModule } from 'angularx-qrcode';
+import { AddRoomComponent } from './components/forms/add-room/add-room.component';
+
 
 @NgModule({
-  declarations: [AppComponent, HomeNewComponent],
+  declarations: [AppComponent, HomeNewComponent, AddRoomComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    SwiperModule
+    SwiperModule,
+    QRCodeModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

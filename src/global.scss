@@ -29,5 +29,7 @@
 @import "swiper/scss/navigation";
 @import "swiper/scss/pagination";
 
-
-
+body.scanner-active {
+  --background: transparent;
+  --ion-background-color: transparent;
+}
