@@ -1,4 +1,4 @@
-<ion-header [style.visibility]="content_visibility">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="tabs/welcome3" icon="caret-back"></ion-back-button>
@@ -6,37 +6,42 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [style.visibility]="content_visibility">
+<ion-content *ngIf="!scanActive">
+  <div class="content" [style.visibility]="content_visibility" >
+    <ion-grid class="grid-1">
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size="6" class="title"><h1>Please select</h1></ion-col>
+        <ion-col></ion-col>
+      </ion-row>
 
-  <ion-grid class="grid-1">
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col size="6" class="title"><h1>Please select</h1></ion-col>
-      <ion-col></ion-col>
-    </ion-row>
+      <ion-img class="img" src="../../assets/img/home4.jpg" alt=""></ion-img>
 
-    <ion-img class="img" src="../../assets/img/home4.jpg" alt=""></ion-img>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size="5" class="title">
+          <ion-button class="button-next" expand="block" [routerLink]="['/tabs/add-room']"> Create Household </ion-button>
+        </ion-col>
+        <ion-col size="5" class="title">
+          <ion-button class="button-next" expand="block" (click)="startScan()"> Join Household </ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
 
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col size="5" class="title">
-        <ion-button class="button-next" expand="block" [routerLink]="['/tabs/add-room']"> Create Household </ion-button>
-      </ion-col>
-      <ion-col size="5" class="title">
-        <ion-button class="button-next" expand="block" (click)="startScan()"> Join Household </ion-button>
-      </ion-col>
-      <ion-col></ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-card class="ion-text-center">
+      <ion-card-content>
+        <qrcode
+        [qrdata]="dataToBeScanned"
+        [width]="150"
+        [imageHeight]="150"
+        [errorCorrectionLevel]="'M'"
 
-  <ion-card class="ion-text-center">
-    <ion-card-content>
-      <qrcode
-      [qrdata]="dataToBeScanned"
-      [width]="256"
-      [errorCorrectionLevel]="'M'"
-      ></qrcode>
-    </ion-card-content>
-  </ion-card>
+        ></qrcode>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
 </ion-content>
+
+<ion-button *ngIf="scanActive" class="button-next" expand="block" (click)="stopScan()"> Stop Scann </ion-button>
