@@ -1,0 +1,30 @@
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  ion-title {
+    text-align: center;
+    margin-right: 50px;
+  }
+  
+  .logo-container img {
+    width: 150px;
+  }
+  
+  .signup-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .signup-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .signup-link a:hover {
+    text-decoration: underline;
+  }
+  

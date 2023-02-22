@@ -11,6 +11,7 @@ import { StatementComponent } from '../statement/statement.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { TabsPage } from './tabs.page';
 
+
 const routes: Routes = [
   {
     path: 'tabs',
@@ -38,10 +39,14 @@ const routes: Routes = [
         component: TaskFormComponent
       },
       {
+        path: 'registration',
+        loadChildren: () => import('../sign-in/sign-in.module').then(m => m.SigninPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/welcome1',
         pathMatch: 'full'
-      }
+      },
     ]
   },
   {
