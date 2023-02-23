@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddRoomComponent } from 'src/app/components/forms/add-room/add-room.component';
+import { TasksComponent } from '../dashboard/tasks/tasks.component';
 import { HomeNewComponent } from '../home-new/home-new.component';
 import { TabsPage } from './tabs.page';
 
@@ -34,6 +35,10 @@ const routes: Routes = [
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
+        path: 'home',
+        component: TasksComponent
+      },
+      {
         path: '',
         redirectTo: '/tabs/welcome1',
         pathMatch: 'full'
@@ -42,7 +47,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/welcome1',
+    redirectTo: '/tabs/home',
     pathMatch: 'full'
   }
 ];

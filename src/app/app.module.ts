@@ -11,10 +11,17 @@ import { HomeNewComponent } from './pages/home-new/home-new.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { AddRoomComponent } from './components/forms/add-room/add-room.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TaskComponent } from './pages/dashboard/task/task.component';
+import { TasksComponent } from './pages/dashboard/tasks/tasks.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomeNewComponent, AddRoomComponent],
+  declarations: [
+    AppComponent,
+    HomeNewComponent,
+    AddRoomComponent,
+    TaskComponent,
+    TasksComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
