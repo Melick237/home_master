@@ -1,0 +1,49 @@
+ion-title {
+  margin-left: 25%;
+}
+
+ion-content{
+  --ion-background-color:#F1F1F1;
+}
+
+ion-toolbar {
+  --background: white;
+  color: black;
+}
+
+.task-form {
+  background-color: white;
+  color: black;
+}
+
+ion-card {
+  margin-top: 30px;
+  border-radius: 30px;
+  background-color: white;
+}
+
+ion-card-content {
+  background-color: white !important;
+}
+
+ion-item {
+  --ion-item-background: white;
+  color: black;
+}
+
+.button-next {
+  margin-top: 10%;
+  width: 60%;
+  margin-left: 60px;
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+  --background: #0D6EFD;
+  font-size: 16px;
+  text-transform: capitalize;
+  --border-radius: 15px;
+}
+
+ion-note {
+  margin-right: 30px;
+  font-size: 14px;
+}

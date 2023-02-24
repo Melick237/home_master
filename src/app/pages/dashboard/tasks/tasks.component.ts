@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
@@ -13,6 +14,9 @@ export class TasksComponent implements OnInit {
     {
       name: "Kitchen Cleaning",
       dueDate: new Date("2023/02/21"),
+      description: "some description",
+      frequency: "daily",
+      saturday: true,
       room: 1,
       status: "todo",
       assignedTo: {
@@ -24,6 +28,9 @@ export class TasksComponent implements OnInit {
     {
       name: "Vacum Cleaning",
       dueDate: new Date(),
+      description: "some description",
+      frequency: "monthly",
+      saturday: false,
       room: 1,
       status: "doing",
       assignedTo: {
@@ -35,6 +42,9 @@ export class TasksComponent implements OnInit {
     {
       name: "Bathroom Cleaning",
       dueDate: new Date("2023/02/26"),
+      description: "some description",
+      frequency: "weekly",
+      saturday: true,
       room: 1,
       status: "done",
       assignedTo: {
@@ -49,6 +59,9 @@ export class TasksComponent implements OnInit {
     {
       name: "Bathroom Cleaning",
       dueDate: new Date("2023/02/19"),
+      description: "some description",
+      frequency: "daily",
+      saturday: false,
       room: 1,
       status: "todo",
       assignedTo: {
@@ -60,6 +73,9 @@ export class TasksComponent implements OnInit {
     {
       name: "Bathroom Cleaning",
       dueDate: new Date("2023/02/22"),
+      description: "some description",
+      frequency: "monthly",
+      saturday: true,
       room: 1,
       status: "doing",
       assignedTo: {
@@ -71,6 +87,9 @@ export class TasksComponent implements OnInit {
     {
       name: "Bathroom Cleaning",
       dueDate: new Date("2023/02/25"),
+      description: "some description",
+      frequency: "weekly",
+      saturday: false,
       room: 1,
       status: "done",
       assignedTo: {
@@ -81,7 +100,9 @@ export class TasksComponent implements OnInit {
     }
   ];
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -108,4 +129,7 @@ export class TasksComponent implements OnInit {
     this.showAll = false;
   }
 
+  addTask() {
+    this.router.navigateByUrl("/tabs/add-task");
+  }
 }

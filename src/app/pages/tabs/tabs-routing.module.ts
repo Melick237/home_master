@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddRoomComponent } from 'src/app/components/forms/add-room/add-room.component';
+import { TaskFormComponent } from 'src/app/components/forms/task-form/task-form.component';
 import { TasksComponent } from '../dashboard/tasks/tasks.component';
 import { HomeNewComponent } from '../home-new/home-new.component';
 import { TabsPage } from './tabs.page';
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'home',
         component: TasksComponent
+      },
+      {
+        path: 'add-task',
+        component: TaskFormComponent
       },
       {
         path: '',

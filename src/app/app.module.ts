@@ -13,6 +13,7 @@ import { AddRoomComponent } from './components/forms/add-room/add-room.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskComponent } from './task/task.component';
 import { TasksComponent } from './pages/dashboard/tasks/tasks.component';
+import { TaskFormComponent } from './components/forms/task-form/task-form.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TasksComponent } from './pages/dashboard/tasks/tasks.component';
     HomeNewComponent,
     AddRoomComponent,
     TaskComponent,
-    TasksComponent],
+    TasksComponent,
+    TaskFormComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
