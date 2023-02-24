@@ -4,6 +4,8 @@ import { AddRoomComponent } from 'src/app/components/forms/add-room/add-room.com
 import { TaskFormComponent } from 'src/app/components/forms/task-form/task-form.component';
 import { TasksComponent } from '../dashboard/tasks/tasks.component';
 import { HomeNewComponent } from '../home-new/home-new.component';
+import { SettingsComponent } from '../settings/settings.component';
+import { StatementComponent } from '../statement/statement.component';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -33,7 +35,11 @@ const routes: Routes = [
       },
       {
         path: 'settings',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        component: SettingsComponent
+      },
+      {
+        path: 'statement',
+        component: StatementComponent
       },
       {
         path: 'home',

@@ -15,6 +15,8 @@ import { TaskComponent } from './task/task.component';
 import { TasksComponent } from './pages/dashboard/tasks/tasks.component';
 import { TaskFormComponent } from './components/forms/task-form/task-form.component';
 import { ShowTaskComponent } from './components/forms/show-task/show-task.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { StatementComponent } from './pages/statement/statement.component';
 
 
 @NgModule({
@@ -25,7 +27,10 @@ import { ShowTaskComponent } from './components/forms/show-task/show-task.compon
     TaskComponent,
     TasksComponent,
     TaskFormComponent,
-    ShowTaskComponent],
+    ShowTaskComponent,
+    SettingsComponent,
+    StatementComponent
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
