@@ -8,7 +8,7 @@
         </div>
       </ion-col>
       <ion-col size="6" class="ion-text-start">
-
+        <ion-title *ngIf="showAll" class=""><b>All Tasks</b></ion-title>
       </ion-col>
       <ion-col size="2">
         <span class="add-task"> + </span>
@@ -47,7 +47,8 @@
   <ion-row class="second-row">
     <ion-col size="1" class=""></ion-col>
     <ion-col size="4">
-      <span class="all-tasks">All tasks</span>
+      <span class="all-tasks" *ngIf="!showAll" (click)="showAllTasks()">All tasks</span>
+      <span class="all-tasks" *ngIf="showAll" (click)="hideAllTasks()">Hide tasks</span>
     </ion-col>
     <ion-col size="7" class=""></ion-col>
   </ion-row>
@@ -62,8 +63,10 @@
             &nbsp;</small>
           <small>
             <span class="days" >
+              <span *ngIf="task.status === 'done'" style="color: #00FF29">Done</span>
+              <span *ngIf="task.status === 'doing'" style="color: #0D6EFD">in progress &nbsp;</span>
               <span style="color: #FF0000" *ngIf="getDays(task.dueDate) < 0"> {{(-1*getDays(task.dueDate))}} days pending 😡 🔥</span>
-              <span *ngIf="getDays(task.dueDate) >= 0">in {{getDays(task.dueDate)}} days</span>
+              <span *ngIf="getDays(task.dueDate) >= 0 && !(task.status === 'done')">in {{getDays(task.dueDate)}} days</span>
             </span>
           </small> <br>
           <ion-icon class="task-icon" name="repeat-outline"></ion-icon>&nbsp;<span class="icon-text">weekly</span>&nbsp;
