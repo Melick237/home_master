@@ -17,6 +17,7 @@ import { TaskFormComponent } from './components/forms/task-form/task-form.compon
 import { ShowTaskComponent } from './components/forms/show-task/show-task.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { StatementComponent } from './pages/statement/statement.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { StatementComponent } from './pages/statement/statement.component';
     TaskFormComponent,
     ShowTaskComponent,
     SettingsComponent,
-    StatementComponent
+    StatementComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
