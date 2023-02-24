@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Close</ion-button>
+    </ion-buttons>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" style="color:green" [strong]="true">Edit</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row [ngStyle]="{'background-color': getBackgroungColor(getDays(actualTask.dueDate), actualTask.status)}" class="first-row">
+    <ion-col size="8" class="">
+      <span class="days" >
+        <span *ngIf="actualTask.status === 'done'" style="color: white">Done</span>
+        <span *ngIf="actualTask.status === 'doing'" style="color: white">in progress &nbsp;</span>
+        <span style="color: #FF0000" *ngIf="getDays(actualTask.dueDate) < 0"> {{(-1*getDays(actualTask.dueDate))}} days pending 😡 🔥</span>
+        <span *ngIf="getDays(actualTask.dueDate) >= 0 && !(actualTask.status === 'done')">in {{getDays(actualTask.dueDate)}} days</span>
+      </span>
+    </ion-col>
+    <ion-col size="4">
+      <span class="responsible">Responsible</span>
+      <div class="profile">
+        <ion-icon name="person-circle-sharp"></ion-icon> &nbsp;
+        <span class="name-user"> {{actualTask.assignedTo.firstName}} </span>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="">
+    <ion-col size="1" class=""></ion-col>
+    <ion-col size="10">
+      <ion-button class="button-next-remind" expand="block" (click)="remind(actualTask)" [disabled]="(actualTask.status === 'doing') || (actualTask.status === 'done')"> 💪 Remein and motivate </ion-button>
+    </ion-col>
+    <ion-col size="1" class=""></ion-col>
+  </ion-row>
+
+  <ion-row class="">
+    <ion-col size="2" class=""></ion-col>
+    <ion-col size="8" class="task-name">
+      <span> <b>{{actualTask.name}}</b> </span>
+    </ion-col>
+    <ion-col size="2" class=""></ion-col>
+  </ion-row>
+
+  <ion-row class="">
+    <ion-col size="1" class=""></ion-col>
+    <ion-col size="10">
+      <ion-button class="button-next-progress" expand="block" (click)="inProgress(actualTask)" [disabled]="actualTask.status === 'doing'"> Task in progress </ion-button>
+    </ion-col>
+    <ion-col size="1" class=""></ion-col>
+  </ion-row>
+
+  <ion-row class="">
+    <ion-col size="1" class=""></ion-col>
+    <ion-col size="10">
+      <ion-button class="button-next-done" expand="block" (click)="done(actualTask)" [disabled]="actualTask.status === 'done'"> Task done </ion-button>
+    </ion-col>
+    <ion-col size="1" class=""></ion-col>
+  </ion-row>
+
+</ion-content>

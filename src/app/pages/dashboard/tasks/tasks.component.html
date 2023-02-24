@@ -54,7 +54,7 @@
   </ion-row>
 
   <div class="tasks-row">
-    <div class="card-task-row"  *ngFor="let task of tasks; let i = index">
+    <div class="card-task-row"  *ngFor="let task of tasks; let i = index" (click)="presentModal(task)">
       <ion-row class="task-row">
         <ion-col size="7">
           <span class="task-name" [ngStyle]="{'color': getDays(task.dueDate) < 0 ? '#FF0000' : 'black'}"> {{task.name}} </span><br>

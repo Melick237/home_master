@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskComponent } from './task/task.component';
 import { TasksComponent } from './pages/dashboard/tasks/tasks.component';
 import { TaskFormComponent } from './components/forms/task-form/task-form.component';
+import { ShowTaskComponent } from './components/forms/show-task/show-task.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { TaskFormComponent } from './components/forms/task-form/task-form.compon
     AddRoomComponent,
     TaskComponent,
     TasksComponent,
-    TaskFormComponent],
+    TaskFormComponent,
+    ShowTaskComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

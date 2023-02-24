@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { ShowTaskComponent } from 'src/app/components/forms/show-task/show-task.component';
+import { TaskFormComponent } from 'src/app/components/forms/task-form/task-form.component';
 
 @Component({
   selector: 'app-tasks',
@@ -9,6 +12,7 @@ import { Router } from '@angular/router';
 export class TasksComponent implements OnInit {
 
   showAll = false;
+  modalData: any;
 
   public tasks = [
     {
@@ -101,7 +105,8 @@ export class TasksComponent implements OnInit {
   ];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private modalCtrl: ModalController
   ) {
   }
 
@@ -131,5 +136,24 @@ export class TasksComponent implements OnInit {
 
   addTask() {
     this.router.navigateByUrl("/tabs/add-task");
+  }
+
+  async presentModal(task: any) {
+    const modal = await this.modalCtrl.create({
+      component: ShowTaskComponent,
+      breakpoints: [0, 0.3, 0.5, 0.8],
+      initialBreakpoint: 0.5,
+      componentProps: {
+        'actualTask': task
+      }
+    });
+
+    modal.onDidDismiss().then((modalData) => {
+      if (modalData !== null) {
+        this.modalData = modalData.data;
+        console.log('Modal Data : ' + modalData.data);
+      }
+    });
+    await modal.present();
   }
 }
