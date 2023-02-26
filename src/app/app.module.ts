@@ -18,6 +18,8 @@ import { ShowTaskComponent } from './components/forms/show-task/show-task.compon
 import { SettingsComponent } from './pages/settings/settings.component';
 import { StatementComponent } from './pages/statement/statement.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { RoomMatesComponent } from './pages/room-mates/room-mates.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     ShowTaskComponent,
     SettingsComponent,
     StatementComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    RoomMatesComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     FormsModule,
     ReactiveFormsModule,
     SwiperModule,
-    QRCodeModule
+    QRCodeModule,
+    HttpClientModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

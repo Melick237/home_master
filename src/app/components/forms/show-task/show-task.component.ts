@@ -68,7 +68,7 @@ export class ShowTaskComponent implements OnInit {
           text: 'Yes',
           role: 'confirm',
           handler: () => {
-            this.taskService.updateTask();
+            this.taskService.updateTask(actualTask);
           },
         },
       ],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
+  profileForm!: FormGroup
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.profileForm = new FormGroup({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl(''),
+      email: new FormControl('', Validators.required),
+      password: new FormControl(''),
+    });
+  }
 
+  save() {
+    console.log(this.profileForm.value)
+  }
 }

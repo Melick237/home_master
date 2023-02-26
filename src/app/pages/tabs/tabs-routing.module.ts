@@ -4,8 +4,10 @@ import { AddRoomComponent } from 'src/app/components/forms/add-room/add-room.com
 import { TaskFormComponent } from 'src/app/components/forms/task-form/task-form.component';
 import { TasksComponent } from '../dashboard/tasks/tasks.component';
 import { HomeNewComponent } from '../home-new/home-new.component';
+import { RoomMatesComponent } from '../room-mates/room-mates.component';
 import { SettingsComponent } from '../settings/settings.component';
 import { StatementComponent } from '../statement/statement.component';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -60,7 +62,15 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/home',
     pathMatch: 'full'
-  }
+  },
+  {
+    path: 'user-profile',
+    component: UserProfileComponent
+  },
+  {
+    path: 'roomates',
+    component: RoomMatesComponent
+  },
 ];
 
 @NgModule({

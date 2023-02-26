@@ -1,26 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TaskServiceService {
+export class PersonsService {
 
   readonly apiUrl: string;
   readonly headers: HttpHeaders;
 
   constructor(private httpClient: HttpClient) {
-    this.apiUrl = `${environment.server}/tasks`;
+    this.apiUrl = `${environment.server}/persons`;
     this.headers = new HttpHeaders({ 'content-type': 'application/json' });
   }
-
-
-  sendReminder() {
-
-  }
-
 
   // GET ONE
   getById(id: string): Observable<any> {
@@ -45,7 +39,7 @@ export class TaskServiceService {
   }
 
   // PUT
-  updateTask(any: any): Observable<any> {
+  updatePerson(any: any): Observable<any> {
     return this.httpClient.put<any>(
       this.apiUrl,
       any,
@@ -59,5 +53,4 @@ export class TaskServiceService {
       responseType: 'text',
     });
   }
-
 }
