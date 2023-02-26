@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddRoomComponent } from 'src/app/components/forms/add-room/add-room.component';
 import { TaskFormComponent } from 'src/app/components/forms/task-form/task-form.component';
+import { AuthGuard } from 'src/app/services/auth/auth.guard';
 import { TasksComponent } from '../dashboard/tasks/tasks.component';
 import { HomeNewComponent } from '../home-new/home-new.component';
 import { RoomMatesComponent } from '../room-mates/room-mates.component';
@@ -15,22 +16,7 @@ const routes: Routes = [
     path: 'tabs',
     component: TabsPage,
     children: [
-      {
-        path: 'welcome1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
-      },
-      {
-        path: 'welcome2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
-      },
-      {
-        path: 'welcome3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
-      },
-      {
-        path: 'home-new',
-        component: HomeNewComponent
-      },
+
       {
         path: 'add-room',
         component: AddRoomComponent
@@ -60,8 +46,9 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    component: HomeNewComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'user-profile',
@@ -70,6 +57,22 @@ const routes: Routes = [
   {
     path: 'roomates',
     component: RoomMatesComponent
+  },
+  {
+    path: 'welcome1',
+    loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+  },
+  {
+    path: 'welcome2',
+    loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+  },
+  {
+    path: 'welcome3',
+    loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+  },
+  {
+    path: 'home-new',
+    component: HomeNewComponent
   },
 ];
 

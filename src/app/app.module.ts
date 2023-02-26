@@ -20,6 +20,8 @@ import { StatementComponent } from './pages/statement/statement.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { RoomMatesComponent } from './pages/room-mates/room-mates.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth/auth.guard';
 
 
 @NgModule({
@@ -46,7 +48,7 @@ import { HttpClientModule } from '@angular/common/http';
     QRCodeModule,
     HttpClientModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
