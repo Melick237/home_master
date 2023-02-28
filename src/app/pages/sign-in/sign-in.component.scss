@@ -1,3 +1,26 @@
+ion-content{
+  --ion-background-color:white;
+  color: black;
+}
+
+ion-toolbar {
+  --background: white;
+  color: black;
+}
+
+ion-button {
+  text-transform: capitalize;
+}
+
+ion-icon {
+  font-size: 30px;
+}
+
+ion-item {
+  --ion-item-background: white;
+  color: black;
+}
+
 .logo-container {
     display: flex;
     justify-content: center;
@@ -7,24 +30,24 @@
     text-align: center;
     margin-right: 50px;
   }
-  
+
   .logo-container img {
     width: 150px;
   }
-  
+
   .signup-link {
     display: flex;
     justify-content: center;
     margin-top: 20px;
   }
-  
+
   .signup-link a {
     color: #007bff;
     text-decoration: none;
     font-weight: 500;
   }
-  
+
   .signup-link a:hover {
     text-decoration: underline;
   }
-  
+

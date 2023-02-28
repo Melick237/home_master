@@ -19,8 +19,6 @@
 
 <ion-content>
 
-
-
   <ion-row class="text-header">
     <ion-col size="1">
     </ion-col>
@@ -63,10 +61,10 @@
             &nbsp;</small>
           <small>
             <span class="days" >
-              <span *ngIf="task.status === 'done'" style="color: #00FF29">Done</span>
-              <span *ngIf="task.status === 'doing'" style="color: #0D6EFD">in progress &nbsp;</span>
+              <span *ngIf="task.status === 'DONE'" style="color: #00FF29">Done</span>
+              <span *ngIf="task.status === 'DOING'" style="color: #0D6EFD">in progress &nbsp;</span>
               <span style="color: #FF0000" *ngIf="getDays(task.dueDate) < 0"> {{(-1*getDays(task.dueDate))}} days pending 😡 🔥</span>
-              <span *ngIf="getDays(task.dueDate) >= 0 && !(task.status === 'done')">in {{getDays(task.dueDate)}} days</span>
+              <span *ngIf="getDays(task.dueDate) >= 0 && !(task.status === 'DONE')">in {{getDays(task.dueDate)}} days</span>
             </span>
           </small> <br>
           <ion-icon class="task-icon" name="repeat-outline"></ion-icon>&nbsp;<span class="icon-text">{{task.frequency}}</span>&nbsp;
@@ -75,7 +73,7 @@
         <ion-col size="5" class="">
           <div class="profile">
           <ion-icon name="person-circle-sharp"></ion-icon> &nbsp;
-          <span class="name-user">{{task.assignedTo.firstName}}</span>
+          <span class="name-user">{{task?.personFirstName}}</span>
         </div>
         </ion-col>
       </ion-row>

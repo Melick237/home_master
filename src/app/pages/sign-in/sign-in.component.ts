@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { PersonsService } from 'src/app/services/persons.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,8 +10,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+  signinForm!: FormGroup;
+  showError = false;
 
-  ngOnInit() {}
+  constructor(
+    private personService: PersonsService,
+    private authService: AuthService
+  ) { }
+
+  ngOnInit() {
+    this.signinForm = new FormGroup({
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
+    });
+
+
+  }
+
+  signIn() {
+
+    this.personService.getByEmail(this.signinForm.value.email)
+    .subscribe({
+      next: (result) => {
+        console.log(result);
+        if(this.signinForm.value.email === result.email &&
+          this.signinForm.value.password === result.password) {
+            this.authService.signIn(this.signinForm.value.email, result.id, result?.room?.id);
+        } else {
+          this.showError = true;
+        }
+      },
+      error: (error) => {}
+    });
+
+  }
 
 }

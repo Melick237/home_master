@@ -7,6 +7,7 @@ import { TasksComponent } from '../dashboard/tasks/tasks.component';
 import { HomeNewComponent } from '../home-new/home-new.component';
 import { RoomMatesComponent } from '../room-mates/room-mates.component';
 import { SettingsComponent } from '../settings/settings.component';
+import { SignInComponent } from '../sign-in/sign-in.component';
 import { StatementComponent } from '../statement/statement.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { TabsPage } from './tabs.page';
@@ -40,7 +41,7 @@ const routes: Routes = [
       },
       {
         path: 'registration',
-        loadChildren: () => import('../sign-in/sign-in.module').then(m => m.SigninPageModule)
+        component: SignInComponent
       },
       {
         path: '',

@@ -19,9 +19,9 @@
         <ion-item lines="full">
           <ion-label>Frequency</ion-label>
           <ion-select placeholder="Select" okText="Choose" cancelText="Cancel" formControlName="frequency">
-            <ion-select-option value="daily">Daily</ion-select-option>
-            <ion-select-option value="weekly">Weekly</ion-select-option>
-            <ion-select-option value="monthly">Monthly</ion-select-option>
+            <ion-select-option value="DAILY">Daily</ion-select-option>
+            <ion-select-option value="WEEKLY">Weekly</ion-select-option>
+            <ion-select-option value="MONTHLY">Monthly</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item id="open-modal2" lines="full">
@@ -35,13 +35,22 @@
             </ion-datetime>
           </ng-template>
         </ion-modal>
+
         <ion-item lines="full">
           <ion-label>Always on saturday ?</ion-label>
-          <ion-select placeholder="Select" okText="Choose" cancelText="Cancel" formControlName="saturday">
-            <ion-select-option value="yes">Yes</ion-select-option>
-            <ion-select-option value="no">No</ion-select-option>
+          <ion-select placeholder="Select" okText="Choose" cancelText="Cancel" formControlName="onSaturday">
+            <ion-select-option value="true">Yes</ion-select-option>
+            <ion-select-option value="false">No</ion-select-option>
           </ion-select>
         </ion-item>
+
+        <ion-item lines="full">
+          <ion-label>Assigned To</ion-label>
+          <ion-select placeholder="Select" okText="Choose" cancelText="Cancel" formControlName="personId">
+            <ion-select-option *ngFor="let person of persons"  [value]="person.id"> {{person.firstName}} </ion-select-option>
+          </ion-select>
+        </ion-item>
+
         <ion-item lines="full">
           <ion-label>Notes</ion-label>
           <ion-textarea formControlName="description" rows="10"
@@ -51,12 +60,17 @@
     </ion-card-content>
   </ion-card>
 
-
+  <ion-row *ngIf="showError">
+    <ion-col size="12">
+      <span style="color:red"> Error occured please try again! </span>
+    </ion-col>
+  </ion-row>
 
   <ion-row class="second-row">
     <ion-col size="1" class=""></ion-col>
     <ion-col size="10">
-      <ion-button class="button-next" expand="block" (click)="createTask()" [disabled]="!taskForm.valid"> Done </ion-button>
+      <ion-button class="button-next" expand="block" *ngIf="!isUpdate" (click)="createTask()" [disabled]="!taskForm.valid"> Done </ion-button>
+      <ion-button class="button-next" expand="block" *ngIf="isUpdate" (click)="updateTask()" [disabled]="!taskForm.valid"> Update </ion-button>
     </ion-col>
     <ion-col size="1" class=""></ion-col>
   </ion-row>

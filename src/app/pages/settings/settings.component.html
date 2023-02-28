@@ -22,7 +22,21 @@
         <span> <b>Manage house</b> </span>
       </ion-col>
       <ion-col size="2" class=""> <ion-icon name="chevron-forward-outline"></ion-icon> </ion-col>
-    </ion-row>
+    </ion-row> <br><br>
+
+    <ion-button class="button-next" expand="block" (click)="showQrCode()"> {{showQr ? 'Hide' : 'Show'}} QrCode </ion-button> <br>
+
+    <ion-card class="ion-text-center">
+      <ion-card-content *ngIf="showQr">
+        <qrcode
+        [qrdata]="dataToBeScanned"
+        [width]="150"
+        [imageHeight]="250"
+        [errorCorrectionLevel]="'M'"
+
+        ></qrcode>
+      </ion-card-content>
+    </ion-card>
   </div>
 
 </ion-content>

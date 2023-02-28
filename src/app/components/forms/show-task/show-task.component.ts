@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, IonModal, ModalController } from '@ionic/angular';
 import { TaskServiceService } from 'src/app/services/task-service.service';
 
@@ -26,8 +26,12 @@ export class ShowTaskComponent implements OnInit {
     await this.modalCtrl?.dismiss(close);
   }
 
-  confirm() {
-    this.router.navigateByUrl("/tabs/add-task");
+  confirm(id: any) {
+    this.router.navigate(["/tabs/add-task"], {
+      queryParams: {
+        taskId: id
+      }
+    } );
     this.modalCtrl?.dismiss(null, 'cancel');
   }
 
@@ -68,7 +72,15 @@ export class ShowTaskComponent implements OnInit {
           text: 'Yes',
           role: 'confirm',
           handler: () => {
-            this.taskService.updateTask(actualTask);
+            actualTask.status = "DOING";
+            this.taskService.updateTask(actualTask).subscribe({
+              next: (result) => {
+                console.log(result);
+              },
+              error: (error) => {
+                console.log(error);
+              }
+            });
           },
         },
       ],
@@ -91,7 +103,15 @@ export class ShowTaskComponent implements OnInit {
           text: 'Yes',
           role: 'confirm',
           handler: () => {
-            this.taskService.sendReminder();
+            actualTask.status = "DONE";
+            this.taskService.updateTask(actualTask).subscribe({
+              next: (result) => {
+                console.log(result);
+              },
+              error: (error) => {
+                console.log(error);
+              }
+            });
           },
         },
       ],
@@ -102,7 +122,7 @@ export class ShowTaskComponent implements OnInit {
 
   getDays(date1: Date) : number {
     // To calculate the time difference of two dates
-    var Difference_In_Time = date1.getTime() - new Date().getTime();
+    var Difference_In_Time = new Date(date1).getTime() - new Date().getTime();
 
     // To calculate the no. of days between two dates
     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
@@ -115,10 +135,13 @@ export class ShowTaskComponent implements OnInit {
     if (dueDate < 0) {
       return '#F1B6B6';
     }
-    if (dueDate >= 0 && status === 'doing') {
+    if (dueDate >= 0 && status === 'DOING') {
       return '#0D6EFD';
     }
-    if (dueDate >= 0 && status === 'done') {
+    if (dueDate >= 0 && status === 'TODO') {
+      return 'gray';
+    }
+    if (dueDate >= 0 && status === 'DONE') {
       return '#00FF29';
     }
     return 'white'

@@ -46,7 +46,7 @@ export class TaskServiceService {
 
   // PUT
   updateTask(any: any): Observable<any> {
-    return this.httpClient.put<any>(
+    return this.httpClient.post<any>(
       this.apiUrl,
       any,
       { headers: this.headers }

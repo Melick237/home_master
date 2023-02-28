@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { PersonsService } from 'src/app/services/persons.service';
 
 @Component({
   selector: 'app-home-new',
@@ -13,11 +15,12 @@ export class HomeNewComponent implements OnInit, OnDestroy {
   scannedResult : any;
   content_visibility = '';
   permission  : any;
-  dataToBeScanned = 'Your data string';
 
   scanActive: boolean = false;
 
   constructor(
+    private personeService: PersonsService,
+    private router: Router
   ) {
 
   }
@@ -81,6 +84,33 @@ export class HomeNewComponent implements OnInit, OnDestroy {
   }
 
   signUpToRoom(roomId: string) {
-    console.log(roomId);
+
+
+
+
+    this.personeService.getByEmail(localStorage.getItem('email')!).subscribe({
+      next: (result) => {
+        console.log(result);
+        const update = {
+          firstName: result.firstName,
+          lastName: result.lastName,
+          email: result.email,
+          password: result.password,
+          id: result.id,
+          roomId: roomId
+        }
+        this.personeService.add(update).subscribe({
+          next: (result) => {
+            this.router.navigateByUrl("");
+          },
+          error: (error) => {
+
+          }
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 }

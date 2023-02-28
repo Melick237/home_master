@@ -23,6 +23,12 @@ export class PersonsService {
     });
   }
 
+  getByEmail(email: string): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}/email/${email}`, {
+      headers: this.headers,
+    });
+  }
+
   // GET ALL
   getAll(): Observable<any[]> {
     return this.httpClient.get<any[]>(this.apiUrl, {

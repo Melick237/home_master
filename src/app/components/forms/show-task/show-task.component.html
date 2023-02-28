@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title></ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="confirm()" style="color:green" [strong]="true">Edit</ion-button>
+      <ion-button (click)="confirm(actualTask.id)" style="color:green" [strong]="true">Edit</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -15,17 +15,18 @@
   <ion-row [ngStyle]="{'background-color': getBackgroungColor(getDays(actualTask.dueDate), actualTask.status)}" class="first-row">
     <ion-col size="8" class="">
       <span class="days" >
-        <span *ngIf="actualTask.status === 'done'" style="color: white">Done</span>
-        <span *ngIf="actualTask.status === 'doing'" style="color: white">in progress &nbsp;</span>
+        <span *ngIf="actualTask.status === 'DONE'" style="color: white">Done &nbsp;</span>
+        <span *ngIf="actualTask.status === 'TODO'" style="color: white">ToDo &nbsp;</span>
+        <span *ngIf="actualTask.status === 'DOING'" style="color: white">in progress &nbsp;</span>
         <span style="color: #FF0000" *ngIf="getDays(actualTask.dueDate) < 0"> {{(-1*getDays(actualTask.dueDate))}} days pending 😡 🔥</span>
-        <span *ngIf="getDays(actualTask.dueDate) >= 0 && !(actualTask.status === 'done')">in {{getDays(actualTask.dueDate)}} days</span>
+        <span *ngIf="getDays(actualTask.dueDate) >= 0 && !(actualTask.status === 'DONE')">in {{getDays(actualTask.dueDate)}} days</span>
       </span>
     </ion-col>
     <ion-col size="4">
       <span class="responsible">Responsible</span>
       <div class="profile">
         <ion-icon name="person-circle-sharp"></ion-icon> &nbsp;
-        <span class="name-user"> {{actualTask.assignedTo.firstName}} </span>
+        <span class="name-user"> {{actualTask?.personFirstName}} </span>
       </div>
     </ion-col>
   </ion-row>

@@ -22,6 +22,7 @@ import { RoomMatesComponent } from './pages/room-mates/room-mates.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth/auth.guard';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AuthGuard } from './services/auth/auth.guard';
     SettingsComponent,
     StatementComponent,
     UserProfileComponent,
-    RoomMatesComponent
+    RoomMatesComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

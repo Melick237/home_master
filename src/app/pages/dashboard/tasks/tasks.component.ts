@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ShowTaskComponent } from 'src/app/components/forms/show-task/show-task.component';
 import { TaskFormComponent } from 'src/app/components/forms/task-form/task-form.component';
+import { TaskServiceService } from 'src/app/services/task-service.service';
 
 @Component({
   selector: 'app-tasks',
@@ -14,109 +15,37 @@ export class TasksComponent implements OnInit {
   showAll = false;
   modalData: any;
 
-  public tasks = [
-    {
-      name: "Kitchen Cleaning",
-      dueDate: new Date("2023/02/21"),
-      description: "some description",
-      frequency: "daily",
-      saturday: true,
-      room: 1,
-      status: "todo",
-      assignedTo: {
-        firstName: "Leonardo",
-        lastName: "Name",
-        email: "name@test.com"
-      }
-    },
-    {
-      name: "Vacum Cleaning",
-      dueDate: new Date(),
-      description: "some description",
-      frequency: "monthly",
-      saturday: false,
-      room: 1,
-      status: "doing",
-      assignedTo: {
-        firstName: "Peter",
-        lastName: "Jack",
-        email: "name@test.com"
-      }
-    },
-    {
-      name: "Bathroom Cleaning",
-      dueDate: new Date("2023/02/26"),
-      description: "some description",
-      frequency: "weekly",
-      saturday: true,
-      room: 1,
-      status: "done",
-      assignedTo: {
-        firstName: "Leonardo",
-        lastName: "Name",
-        email: "name@test.com"
-      }
-    }
-  ];
+  public tasks : any[] = [];
 
-  public allTasks = [
-    {
-      name: "Bathroom Cleaning",
-      dueDate: new Date("2023/02/19"),
-      description: "some description",
-      frequency: "daily",
-      saturday: false,
-      room: 1,
-      status: "todo",
-      assignedTo: {
-        firstName: "Leonardo",
-        lastName: "Name",
-        email: "name@test.com"
-      }
-    },
-    {
-      name: "Bathroom Cleaning",
-      dueDate: new Date("2023/02/22"),
-      description: "some description",
-      frequency: "monthly",
-      saturday: true,
-      room: 1,
-      status: "doing",
-      assignedTo: {
-        firstName: "Leonardo",
-        lastName: "Name",
-        email: "name@test.com"
-      }
-    },
-    {
-      name: "Bathroom Cleaning",
-      dueDate: new Date("2023/02/25"),
-      description: "some description",
-      frequency: "weekly",
-      saturday: false,
-      room: 1,
-      status: "done",
-      assignedTo: {
-        firstName: "Leonardo",
-        lastName: "Name",
-        email: "name@test.com"
-      }
-    }
-  ];
+  public allTasks : any[] = [];
 
   constructor(
     private router: Router,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private taskService: TaskServiceService
   ) {
+
+    console.log(1)
   }
 
   ngOnInit() {
     this.showAll = false;
+
+    this.taskService.getAll().subscribe({
+      next: (result) => {
+        console.log(result)
+        this.tasks = result.slice(0,3);
+        this.allTasks = result;
+      },
+      error:(error) => {
+
+      }
+    });
   }
 
-  getDays(date1: Date) : number {
+  getDays(date1: any) : number {
     // To calculate the time difference of two dates
-    var Difference_In_Time = date1.getTime() - new Date().getTime();
+    var Difference_In_Time = new Date(date1)?.getTime() - new Date().getTime();
 
     // To calculate the no. of days between two dates
     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
@@ -126,6 +55,7 @@ export class TasksComponent implements OnInit {
 
   showAllTasks() {
     this.tasks.push(...this.allTasks);
+    this.tasks = this.allTasks;
     this.showAll = true;
   }
 
