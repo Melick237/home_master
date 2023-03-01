@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { PersonsService } from 'src/app/services/persons.service';
 
@@ -13,9 +14,12 @@ export class SignInComponent implements OnInit {
   signinForm!: FormGroup;
   showError = false;
 
+  @Input() firstSignin = false;
+
   constructor(
     private personService: PersonsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
@@ -35,7 +39,12 @@ export class SignInComponent implements OnInit {
         console.log(result);
         if(this.signinForm.value.email === result.email &&
           this.signinForm.value.password === result.password) {
-            this.authService.signIn(this.signinForm.value.email, result.id, result?.room?.id);
+            if(this.firstSignin) {
+              this.authService.signIn(this.signinForm.value.email, result.id, result?.room?.id);
+              this.cancel(true);
+            } else {
+              this.authService.signInRedirect(this.signinForm.value.email, result.id, result?.room?.id);
+            }
         } else {
           this.showError = true;
         }
@@ -43,6 +52,11 @@ export class SignInComponent implements OnInit {
       error: (error) => {}
     });
 
+  }
+
+  async cancel(reason: boolean) {
+    const close: string = "Modal Removed";
+    await this.modalCtrl?.dismiss(reason);
   }
 
 }

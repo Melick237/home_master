@@ -26,6 +26,14 @@ export class AuthService {
     localStorage.setItem("roomId", roomId?.toString());
     localStorage.setItem("isLoggedIn", "true");
     this.isLoggedIn = true;
+  }
+
+  signInRedirect(email: any, id: number, roomId: number) {
+    localStorage.setItem("email", email);
+    localStorage.setItem("id", id.toString());
+    localStorage.setItem("roomId", roomId?.toString());
+    localStorage.setItem("isLoggedIn", "true");
+    this.isLoggedIn = true;
     this.router.navigateByUrl("");
   }
 

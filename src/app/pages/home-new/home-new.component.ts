@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { ModalController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { PersonsService } from 'src/app/services/persons.service';
+import { SignInComponent } from '../sign-in/sign-in.component';
 
 @Component({
   selector: 'app-home-new',
@@ -15,12 +18,15 @@ export class HomeNewComponent implements OnInit, OnDestroy {
   scannedResult : any;
   content_visibility = '';
   permission  : any;
+  modalData: any;
 
   scanActive: boolean = false;
 
   constructor(
     private personeService: PersonsService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
+    private modalCtrl: ModalController
   ) {
 
   }
@@ -83,34 +89,78 @@ export class HomeNewComponent implements OnInit, OnDestroy {
       this.stopScan();
   }
 
-  signUpToRoom(roomId: string) {
+  async signUpToRoom(roomId: string) {
 
-
-
-
-    this.personeService.getByEmail(localStorage.getItem('email')!).subscribe({
-      next: (result) => {
-        console.log(result);
-        const update = {
-          firstName: result.firstName,
-          lastName: result.lastName,
-          email: result.email,
-          password: result.password,
-          id: result.id,
-          roomId: roomId
-        }
-        this.personeService.add(update).subscribe({
-          next: (result) => {
-            this.router.navigateByUrl("");
-          },
-          error: (error) => {
-
+    if (this.authService.isAuthenticated()){
+      this.personeService.getByEmail(localStorage.getItem('email')!).subscribe({
+        next: (result) => {
+          console.log(result);
+          const update = {
+            firstName: result.firstName,
+            lastName: result.lastName,
+            email: result.email,
+            password: result.password,
+            id: result.id,
+            roomId: roomId
           }
-        });
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
+          this.personeService.add(update).subscribe({
+            next: (result) => {
+              this.router.navigateByUrl("");
+            },
+            error: (error) => {
+
+            }
+          });
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+    } else {
+      // if the user is not authenticated
+      const modal = await this.modalCtrl.create({
+        component: SignInComponent,
+        breakpoints: [0, 0.3, 0.5, 0.8],
+        initialBreakpoint: 0.5,
+        componentProps: {
+          'firstSignin': true
+        }
+      });
+
+      modal.onDidDismiss().then((modalData) => {
+        if (modalData !== null) {
+          this.modalData = modalData.data;
+          console.log('Modal Data : ' + modalData.data);
+        }
+      });
+      await modal.present();
+
+
+      this.personeService.getByEmail(localStorage.getItem('email')!).subscribe({
+        next: (result) => {
+          console.log(result);
+          const update = {
+            firstName: result.firstName,
+            lastName: result.lastName,
+            email: result.email,
+            password: result.password,
+            id: result.id,
+            roomId: roomId
+          }
+          this.personeService.add(update).subscribe({
+            next: (result) => {
+              this.router.navigateByUrl("");
+            },
+            error: (error) => {
+
+            }
+          });
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+    }
+
   }
 }
