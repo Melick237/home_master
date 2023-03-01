@@ -1,0 +1,149 @@
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController, IonModal, ModalController } from '@ionic/angular';
+import { TaskServiceService } from 'src/app/services/task-service.service';
+
+@Component({
+  selector: 'app-show-task',
+  templateUrl: './show-task.component.html',
+  styleUrls: ['./show-task.component.scss'],
+})
+export class ShowTaskComponent implements OnInit {
+
+  @Input() actualTask!: any;
+
+  constructor(
+    private modalCtrl: ModalController,
+    private router: Router,
+    private alertController: AlertController,
+    private taskService: TaskServiceService
+    ) { }
+
+  ngOnInit() {}
+
+  async cancel() {
+    const close: string = "Modal Removed";
+    await this.modalCtrl?.dismiss(close);
+  }
+
+  confirm(id: any) {
+    this.router.navigate(["/tabs/add-task"], {
+      queryParams: {
+        taskId: id
+      }
+    } );
+    this.modalCtrl?.dismiss(null, 'cancel');
+  }
+
+  async remind(actualTask: any) {
+    const alert = await this.alertController.create({
+      header: 'Do you really want to send the reminder for the task '+actualTask.name+' ?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+          },
+        },
+        {
+          text: 'Yes',
+          role: 'confirm',
+          handler: () => {
+            this.taskService.sendReminder();
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async inProgress(actualTask :any) {
+    const alert = await this.alertController.create({
+      header: 'Do you really want to change the status of the task '+actualTask.name+' ?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+          },
+        },
+        {
+          text: 'Yes',
+          role: 'confirm',
+          handler: () => {
+            actualTask.status = "DOING";
+            this.taskService.updateTask(actualTask).subscribe({
+              next: (result) => {
+                console.log(result);
+              },
+              error: (error) => {
+                console.log(error);
+              }
+            });
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async done(actualTask :any) {
+    const alert = await this.alertController.create({
+      header: 'Have you really already done the task of '+actualTask.name+' ?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+          },
+        },
+        {
+          text: 'Yes',
+          role: 'confirm',
+          handler: () => {
+            actualTask.status = "DONE";
+            this.taskService.updateTask(actualTask).subscribe({
+              next: (result) => {
+                console.log(result);
+              },
+              error: (error) => {
+                console.log(error);
+              }
+            });
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  getDays(date1: Date) : number {
+    // To calculate the time difference of two dates
+    var Difference_In_Time = new Date(date1).getTime() - new Date().getTime();
+
+    // To calculate the no. of days between two dates
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    return Math.round(Difference_In_Days);
+  }
+
+  getBackgroungColor(dueDate: number, status: string): string {
+
+    if (dueDate < 0) {
+      return '#F1B6B6';
+    }
+    if (dueDate >= 0 && status === 'DOING') {
+      return '#0D6EFD';
+    }
+    if (dueDate >= 0 && status === 'TODO') {
+      return 'gray';
+    }
+    if (dueDate >= 0 && status === 'DONE') {
+      return '#00FF29';
+    }
+    return 'white'
+  }
+}

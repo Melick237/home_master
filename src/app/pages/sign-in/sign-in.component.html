@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/welcome3" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form [formGroup]="signinForm">
+      <ion-row>
+        <ion-col size="12">
+          <div class="logo-container">
+            <img src="assets/logo/logo.png">
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" formControlName="email" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" formControlName="password" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-button expand="block" (click)="signIn()">Login</ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="showError">
+        <ion-col size="12">
+          <span style="color:red"> Incorrect username or password! </span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <div class="signup-link">
+            <a href="#">Don't have an account? Sign up</a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

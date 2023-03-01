@@ -1,0 +1,177 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/home-new" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Add Room</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div>
+    <ion-slides [options]="slidesOpts" (ionSlideDidChange)="onSlidesDidChange()"
+      (ionSlideWillChange)="onSlidesChanged()">
+      <ng-container *ngFor="let slide of slides">
+        <ion-slide>
+
+          <div class="full-width ion-text-start">
+
+            <form [formGroup]="profileForm" #billingFormRef="ngForm" novalidate *ngIf="slide === 'Profile Picture'">
+              <ion-grid class="grid-1">
+                <ion-row>
+                  <ion-col></ion-col>
+                  <ion-col size="8" class="title"><h1>Select your profile picture</h1></ion-col>
+                  <ion-col></ion-col>
+                </ion-row>
+              </ion-grid>
+
+              <ion-list-header class="ion-no-padding" style="min-height: auto;">
+                <ion-label class="ion-text-center" color="primary">
+                Selected image: <br>
+                </ion-label>
+              </ion-list-header>
+
+              <div>
+                <img class="img-thumb" [src]="profileImagePath" *ngIf="profileImagePath">
+              </div>
+
+              <div class="flex ion-text-center full-width ion-margin-top">
+                <div class="ion-margin-end">
+                  <h5 class="text-medium bold">Upload image</h5>
+                  <ion-button strong shape="round" color="primary" size="small" (click)="presentActionSheet('profileImagePath')">
+                    Select
+                  </ion-button>
+                </div>
+              </div>
+
+            </form>
+
+            <form [formGroup]="housePictureForm" #shippingFormRef="ngForm" novalidate *ngIf="slide === 'Household Picture'">
+
+              <ion-grid class="grid-1">
+                <ion-row>
+                  <ion-col></ion-col>
+                  <ion-col size="8" class="title"><h1>Select the Household picture</h1></ion-col>
+                  <ion-col></ion-col>
+                </ion-row>
+              </ion-grid>
+
+              <ion-list-header class="ion-no-padding" style="min-height: auto;">
+                <ion-label class="ion-text-center" color="primary">
+                Selected image: <br>
+                </ion-label>
+              </ion-list-header>
+
+              <div>
+                <img class="img-thumb" [src]="houseImagePath" *ngIf="houseImagePath">
+              </div>
+
+              <div class="flex ion-text-center full-width ion-margin-top">
+                <div class="ion-margin-end">
+                  <h5 class="text-medium bold">Upload image</h5>
+                  <ion-button strong shape="round" color="primary" size="small" (click)="presentActionSheet('houseImagePath')">
+                    Select
+                  </ion-button>
+                </div>
+              </div>
+
+            </form>
+
+            <form [formGroup]="nameForm" #paymentFormRef="ngForm" novalidate *ngIf="slide === 'Name'">
+
+              <ion-grid class="grid-1">
+                <ion-row>
+                  <ion-col></ion-col>
+                  <ion-col size="8" class="title"><h1>Enter your name :</h1></ion-col>
+                  <ion-col></ion-col>
+                </ion-row>
+              </ion-grid>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Name :</ion-label>
+                    <ion-input type="text" formControlName="personName"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+            </form>
+
+            <form [formGroup]="houseType" #paymentFormRef="ngForm" novalidate *ngIf="slide === 'Household Type'">
+
+              <ion-grid class="grid-1">
+                <ion-row>
+                  <ion-col></ion-col>
+                  <ion-col size="8" class="title"><h1>Select the Household Type :</h1></ion-col>
+                  <ion-col></ion-col>
+                </ion-row>
+              </ion-grid>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Household Type :</ion-label>
+                    <ion-input type="text" formControlName="type"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+            </form>
+
+            <form [formGroup]="houseName" #paymentFormRef="ngForm" novalidate *ngIf="slide === 'Household Name'">
+
+              <ion-grid class="grid-1">
+                <ion-row>
+                  <ion-col></ion-col>
+                  <ion-col size="8" class="title"><h1>Enter the Household name :</h1></ion-col>
+                  <ion-col></ion-col>
+                </ion-row>
+              </ion-grid>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Household Name :</ion-label>
+                    <ion-input type="text" formControlName="houseName"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+            </form>
+          </div>
+
+        </ion-slide>
+
+      </ng-container>
+
+    </ion-slides>
+
+  </div>
+
+</ion-content>
+
+<ion-row class="ion-text-center">
+  <ion-col></ion-col>
+  <ion-col size="9">
+    <div class="full-width flex align-items-center justify-content-space-between">
+      <ion-button style="width: 120px;" shape="round" color="primary"
+        *ngIf="!isBeginning " (click)="onBackButtonTouched()">
+        <span>Back</span>
+      </ion-button>
+
+      <ion-button style="width: 120px;" shape="round" color="primary" *ngIf="!isEnd"
+        (click)="onNextButtonTouched()">
+        <span>Next</span>
+      </ion-button>
+
+      <ion-button style="width: 120px;" shape="round" color="primary" *ngIf="isEnd"
+      (click)="create()">
+      <span>Create</span>
+    </ion-button>
+    </div>
+  </ion-col>
+  <ion-col></ion-col>
+</ion-row>
+

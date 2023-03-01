@@ -1,0 +1,28 @@
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Task</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="settings">
+        <ion-icon name="cog-outline"></ion-icon>
+        <ion-label>Setting</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="tabs">
+      </ion-tab-button>
+
+      <ion-tab-button tab="tabs1">
+      </ion-tab-button>
+
+      <ion-tab-button tab="home">
+        <ion-icon name="person-outline" (click)="navigateToSignInPage()"></ion-icon>
+        <ion-label>State</ion-label>
+      </ion-tab-button>
+
+      <!-- <app-menu-more-button (currentView)="setCurrentView($event)"></app-menu-more-button> -->
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

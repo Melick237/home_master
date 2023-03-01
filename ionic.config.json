@@ -1,0 +1,8 @@
+{
+  "name": "room",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

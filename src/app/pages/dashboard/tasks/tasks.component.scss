@@ -1,0 +1,112 @@
+ion-content{
+  --ion-background-color:#F1F1F1;
+}
+
+ion-toolbar {
+  --background: white;
+  color: black;
+}
+
+ion-icon {
+  font-size: 40px;
+}
+
+.username {
+  padding-top: 12px;
+  margin-left: 6px;
+  font-size: 15px !important;
+  font-weight: bold;
+  position: absolute;
+}
+
+.add-task {
+  position: absolute;
+  margin-top: 0px !important;
+  margin-left: 8px;
+  width: 40px;
+  font-size: 25px;
+  color: #0D6EFD;
+  padding: 5px;
+  border-radius: 50px;
+  text-align: center;
+  background-color: #F7F7F9;
+}
+
+.text-header {
+  margin-top: 50px;
+}
+
+.second-row {
+  margin-top: 20px;
+}
+
+.all-tasks {
+  color: #0D6EFD;
+  font-weight: bold;
+}
+
+.tasks-row {
+  margin-top: 30px;
+  color: black;
+  font-weight: bold;
+}
+
+.point {
+  color: gray;
+  font-size: 6px;
+  padding-bottom: 2px;
+  padding-left: 15px;
+}
+
+.task-icon {
+  color: gray;
+  font-size: 15px;
+  margin-top: 4px;
+  padding-left: 15px;
+}
+
+.icon-text {
+  color: gray;
+  font-size: 12px;
+  position: relative;
+  margin-top: -10px;
+}
+
+.days {
+  color: gray;
+  font-size: 15px;
+}
+
+.task-name {
+  font-size: 20px;
+  padding-left: 15px;
+}
+
+.task-row {
+  margin-bottom: 35px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.name-user {
+  position: absolute;
+  margin-top: 12px !important;
+}
+
+.profile {
+  background-color: #F7F7F9;
+  border-radius: 40px;
+  height: 40px;
+}
+
+.card-task-row {
+  background-color: #FFFFFF;
+  width: 90%;
+  margin-left: 5%;
+  border-radius: 20px;
+}
+
+.ion-title {
+  position: absolute;
+  padding-top: 5px !important;
+}

@@ -1,0 +1,91 @@
+ion-content{
+  --ion-background-color:white;
+  color: black;
+}
+
+ion-toolbar {
+  --background: white;
+  color: black;
+}
+
+ion-button {
+  text-transform: capitalize;
+}
+
+ion-icon {
+  font-size: 30px;
+}
+
+.first-row {
+
+}
+
+.profile {
+  background-color: #F7F7F9;
+  border-radius: 40px;
+  height: 35px;
+  padding-top: 2px;
+  color: black;
+}
+
+.responsible {
+  color: white;
+  margin-left: 18px;
+}
+
+.name-user {
+  position: absolute;
+  margin-top: 7px !important;
+}
+
+.button-next-remind {
+  margin-top: 10%;
+  width: 90%;
+  margin-left: 10px;
+  --padding-top: 27px;
+  --padding-bottom: 27px;
+  --padding-left: 25px;
+  --padding-right: 25px;
+  --background: #FF0000;
+  font-size: 19px;
+  text-transform: capitalize;
+  --border-radius: 15px;
+}
+
+.button-next-progress {
+  margin-top: 4%;
+  width: 60%;
+  margin-left: 60px;
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+  --background: #0D6EFD;
+  font-size: 16px;
+  text-transform: capitalize;
+  --border-radius: 15px;
+}
+
+.button-next-done {
+  margin-top: 0%;
+  width: 60%;
+  margin-left: 60px;
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+  --background: #00FF29;
+  font-size: 16px;
+  text-transform: capitalize;
+  --border-radius: 15px;
+  color: black;
+}
+
+.task-name {
+  color: black;
+  margin-top: 6%;
+  text-align: center;
+}
+
+.days {
+  position: absolute;
+  padding-top: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+}

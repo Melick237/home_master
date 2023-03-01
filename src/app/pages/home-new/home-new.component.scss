@@ -1,0 +1,41 @@
+ion-content{
+  --ion-background-color:white;
+}
+
+ion-toolbar {
+  --background: white;
+}
+
+ion-back-button {
+  --color: black;
+}
+
+.grid-1 {
+  text-align: center;
+  margin-top: 0px;
+}
+
+h1 {
+  color: black;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.img {
+  border-radius: 20px !important;
+  overflow: hidden;
+  width: 80%;
+  margin-left: 9%;
+  margin-top: 30px;
+}
+
+.button-next {
+  margin-top: 70%;
+
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+  --background: #0D6EFD;
+  font-size: 14px;
+  text-transform: capitalize;
+  --border-radius: 10px;
+}
