@@ -32,6 +32,9 @@ export class SignInComponent implements OnInit {
 
 
   }
+  signUp() {
+    this.router.navigateByUrl("/signUp");
+  }
 
   signIn() {
     let roomId = 0;
