@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth/auth.guard';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
     StatementComponent,
     UserProfileComponent,
     RoomMatesComponent,
-    SignInComponent
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

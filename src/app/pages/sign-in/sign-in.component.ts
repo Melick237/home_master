@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { PersonsService } from 'src/app/services/persons.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,7 +20,8 @@ export class SignInComponent implements OnInit {
   constructor(
     private personService: PersonsService,
     private authService: AuthService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,6 +31,9 @@ export class SignInComponent implements OnInit {
     });
 
 
+  }
+  signUp() {
+    this.router.navigateByUrl("/signUp");
   }
 
   signIn() {
