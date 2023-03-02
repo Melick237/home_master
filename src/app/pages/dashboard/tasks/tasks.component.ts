@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ShowTaskComponent } from 'src/app/components/forms/show-task/show-task.component';
 import { TaskFormComponent } from 'src/app/components/forms/task-form/task-form.component';
+import { RoomsService } from 'src/app/services/rooms.service';
 import { TaskServiceService } from 'src/app/services/task-service.service';
 
 @Component({
@@ -22,7 +23,8 @@ export class TasksComponent implements OnInit {
   constructor(
     private router: Router,
     private modalCtrl: ModalController,
-    private taskService: TaskServiceService
+    private taskService: TaskServiceService,
+    private roomService: RoomsService
   ) {
 
     console.log(1)
@@ -31,11 +33,11 @@ export class TasksComponent implements OnInit {
   ngOnInit() {
     this.showAll = false;
 
-    this.taskService.getAll().subscribe({
+    this.roomService.getById(localStorage.getItem('roomId')!).subscribe({
       next: (result) => {
         console.log(result)
-        this.tasks = result.slice(0,3);
-        this.allTasks = result;
+        this.tasks = result.tasks.slice(0,3);
+        this.allTasks = result.tasks;
       },
       error:(error) => {
 

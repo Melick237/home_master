@@ -131,35 +131,39 @@ export class HomeNewComponent implements OnInit, OnDestroy {
         if (modalData !== null) {
           this.modalData = modalData.data;
           console.log('Modal Data : ' + modalData.data);
+
+          if(modalData.data) {
+            this.personeService.getByEmail(localStorage.getItem('email')!).subscribe({
+              next: (result) => {
+                console.log(result);
+                const update = {
+                  firstName: result.firstName,
+                  lastName: result.lastName,
+                  email: result.email,
+                  password: result.password,
+                  id: result.id,
+                  roomId: roomId
+                }
+                this.personeService.add(update).subscribe({
+                  next: (result) => {
+                    this.router.navigateByUrl("");
+                  },
+                  error: (error) => {
+                    this.router.navigateByUrl("/welcome1");
+                  }
+                });
+              },
+              error: (error) => {
+                console.log(error);
+              }
+            });
+          }
         }
       });
       await modal.present();
 
 
-      this.personeService.getByEmail(localStorage.getItem('email')!).subscribe({
-        next: (result) => {
-          console.log(result);
-          const update = {
-            firstName: result.firstName,
-            lastName: result.lastName,
-            email: result.email,
-            password: result.password,
-            id: result.id,
-            roomId: roomId
-          }
-          this.personeService.add(update).subscribe({
-            next: (result) => {
-              this.router.navigateByUrl("");
-            },
-            error: (error) => {
 
-            }
-          });
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      });
     }
 
   }

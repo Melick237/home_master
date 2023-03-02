@@ -34,7 +34,9 @@ export class AuthService {
     localStorage.setItem("roomId", roomId?.toString());
     localStorage.setItem("isLoggedIn", "true");
     this.isLoggedIn = true;
-    this.router.navigateByUrl("");
+    this.router.navigateByUrl("").then(() => {
+      window.location.reload();
+    });
   }
 
   signOut() {

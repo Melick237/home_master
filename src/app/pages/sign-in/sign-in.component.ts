@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { PersonsService } from 'src/app/services/persons.service';
@@ -18,8 +19,9 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private personService: PersonsService,
-    private authService: AuthService,
-    private modalCtrl: ModalController
+    public authService: AuthService,
+    private modalCtrl: ModalController,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class SignInComponent implements OnInit {
   }
 
   signIn() {
+    let roomId = 0;
 
     this.personService.getByEmail(this.signinForm.value.email)
     .subscribe({
@@ -39,12 +42,19 @@ export class SignInComponent implements OnInit {
         console.log(result);
         if(this.signinForm.value.email === result.email &&
           this.signinForm.value.password === result.password) {
-            if(this.firstSignin) {
-              this.authService.signIn(this.signinForm.value.email, result.id, result?.room?.id);
-              this.cancel(true);
-            } else {
-              this.authService.signInRedirect(this.signinForm.value.email, result.id, result?.room?.id);
-            }
+            this.personService.getById(result.id).subscribe({
+              next: result => {
+                roomId = result.roomId;
+
+
+                if(this.firstSignin) {
+                  this.authService.signIn(this.signinForm.value.email, result.id, roomId);
+                  this.cancel(true);
+                } else {
+                  this.authService.signInRedirect(this.signinForm.value.email, result.id, roomId);
+                }
+              }
+            });
         } else {
           this.showError = true;
         }
@@ -52,6 +62,10 @@ export class SignInComponent implements OnInit {
       error: (error) => {}
     });
 
+  }
+
+  logout() {
+    this.authService.signOut();
   }
 
   async cancel(reason: boolean) {

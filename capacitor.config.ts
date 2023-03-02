@@ -2,11 +2,11 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'room',
+  appName: 'MyWG',
   webDir: 'www',
   bundledWebRuntime: false,
   server: {
-    "url": "http://127.0.0.1"
+    cleartext: true
   }
 };
 

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonsService } from 'src/app/services/persons.service';
+import { RoomsService } from 'src/app/services/rooms.service';
 import { TaskServiceService } from 'src/app/services/task-service.service';
 
 @Component({
@@ -22,7 +23,8 @@ export class TaskFormComponent implements OnInit {
     private taskService: TaskServiceService,
     private router: Router,
     private activatedroute: ActivatedRoute,
-    private personeService: PersonsService
+    private personeService: PersonsService,
+    private roomService: RoomsService
   ) { }
 
   ngOnInit() {
@@ -50,10 +52,10 @@ export class TaskFormComponent implements OnInit {
       });
     }
 
-    this.personeService.getAll().subscribe({
+    this.roomService.getById(localStorage.getItem('roomId')!).subscribe({
       next: (result) => {
         console.log(result)
-        this.persons = result;
+        this.persons = result?.persons;
       },
       error: (error) => {}
     });
@@ -75,7 +77,9 @@ export class TaskFormComponent implements OnInit {
     this.taskService.add(create).subscribe({
       next: (result) => {
         console.log(result);
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/").then(() => {
+          window.location.reload();
+        });
       },
       error: (error) => {
         console.log(error);
@@ -102,7 +106,9 @@ export class TaskFormComponent implements OnInit {
       next: (result) => {
         console.log(result);
         this.isUpdate = false;
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/").then(() => {
+          window.location.reload();
+        });
       },
       error: (error) => {
         console.log(error);
