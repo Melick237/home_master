@@ -16,6 +16,8 @@ export class TasksComponent implements OnInit {
   showAll = false;
   modalData: any;
 
+  username = localStorage.getItem("username");
+
   public tasks : any[] = [];
 
   public allTasks : any[] = [];

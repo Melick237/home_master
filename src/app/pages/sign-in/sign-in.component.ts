@@ -40,6 +40,7 @@ export class SignInComponent implements OnInit {
     .subscribe({
       next: (result) => {
         console.log(result);
+        localStorage.setItem("username", result.firstName);
         if(this.signinForm.value.email === result.email &&
           this.signinForm.value.password === result.password) {
             this.personService.getById(result.id).subscribe({
