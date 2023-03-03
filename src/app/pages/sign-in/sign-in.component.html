@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="welcome3" icon="caret-back"></ion-back-button>
+      <ion-back-button defaultHref="welcome3" *ngIf="!authService.isAuthenticated()" icon="caret-back"></ion-back-button>
+      <ion-back-button defaultHref="tabs/home" *ngIf="authService.isAuthenticated()" icon="caret-back"></ion-back-button>
     </ion-buttons>
     <ion-title>Login</ion-title>
   </ion-toolbar>

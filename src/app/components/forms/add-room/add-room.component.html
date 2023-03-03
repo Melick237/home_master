@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="tabs/home-new" icon="caret-back"></ion-back-button>
+      <ion-back-button defaultHref="/home-new" icon="caret-back"></ion-back-button>
     </ion-buttons>
     <ion-title class="ion-text-center">Add Room</ion-title>
   </ion-toolbar>
@@ -135,6 +135,15 @@
                   <ion-item lines="none">
                     <ion-label position="stacked">Household Name :</ion-label>
                     <ion-input type="text" formControlName="houseName"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Enter your email :</ion-label>
+                    <ion-input type="text" formControlName="email"></ion-input>
                   </ion-item>
                 </ion-col>
               </ion-row>

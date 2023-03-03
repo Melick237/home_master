@@ -30,7 +30,6 @@ export class RoomMatesComponent implements OnInit {
 
   removePerson(person: any) {
 
-    console.log(person)
     const update = {
       firstName: person.firstName,
       lastName: person.lastName,

@@ -5,6 +5,9 @@ import { CameraResultType, CameraSource } from '@capacitor/camera';
 import { Plugins } from '@capacitor/core';
 import { Preferences } from '@capacitor/preferences';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { RoomsService } from 'src/app/services/rooms.service';
+import { PersonsService } from 'src/app/services/persons.service';
+import { Router } from '@angular/router';
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const { Camera } = Plugins;
 
@@ -63,9 +66,14 @@ export class AddRoomComponent implements OnInit {
   public isEnd = false;
   base64= '';
 
-  constructor(private actionSheetCtrl: ActionSheetController,
+  constructor(
+    private actionSheetCtrl: ActionSheetController,
     private navCtrl: NavController,
-    private sanitizer: DomSanitizer) {
+    private sanitizer: DomSanitizer,
+    private roomService: RoomsService,
+    private personService: PersonsService,
+    private router: Router
+    ) {
   }
 
   ngOnInit() {
@@ -85,23 +93,24 @@ export class AddRoomComponent implements OnInit {
 
   setupForm() {
     this.profileForm = new FormGroup({
-      profileImg: new FormControl('', Validators.required)
+      profileImg: new FormControl('')
     });
 
     this.housePictureForm = new FormGroup({
-      housePicture: new FormControl('', Validators.required)
+      housePicture: new FormControl('')
     });
 
     this.nameForm = new FormGroup({
-      personName: new FormControl('', Validators.required)
+      personName: new FormControl('')
     });
 
     this.houseType = new FormGroup({
-      type: new FormControl('', Validators.required)
+      type: new FormControl('')
     });
 
     this.houseName = new FormGroup({
-      houseName: new FormControl('', Validators.required)
+      houseName: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required)
     });
   }
 
@@ -243,6 +252,44 @@ export class AddRoomComponent implements OnInit {
   originalOrder = (): number => 0;
 
   create() {
-      console.log( this.nameForm.value, this.housePictureForm.value, this.profileForm.value, this.houseType.value, this.houseName.value );
+    console.log( this.nameForm.value, this.housePictureForm.value, this.profileForm.value, this.houseType.value, this.houseName.value );
+
+    this.personService.getByEmail(this.houseName.value.email).subscribe({
+      next: (person) => {
+
+        const create = {
+          name: this.houseName.value.houseName
+        }
+        this.roomService.add(create).subscribe({
+          next: (room) => {
+
+            const update = {
+              firstName: person.firstName,
+              lastName: person.lastName,
+              email: person.email,
+              password: person.password,
+              id: person.id,
+              roomId: room.id
+            }
+            this.personService.add(update).subscribe({
+              next: (result) => {
+                this.router.navigateByUrl("/home-new");
+              },
+              error: (error) => {
+
+              }
+            });
+          },
+          error: (error) => {
+
+          }
+        });
+      },
+      error: (error) => {
+
+      }
+    });
+
+
   }
 }

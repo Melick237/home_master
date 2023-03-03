@@ -19,11 +19,6 @@ const routes: Routes = [
     path: 'tabs',
     component: TabsPage,
     children: [
-
-      {
-        path: 'add-room',
-        component: AddRoomComponent
-      },
       {
         path: 'settings',
         component: SettingsComponent
@@ -84,6 +79,10 @@ const routes: Routes = [
   {
     path: 'home-new',
     component: HomeNewComponent
+  },
+  {
+    path: 'add-room',
+    component: AddRoomComponent
   },
 ];
 
