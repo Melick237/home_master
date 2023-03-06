@@ -13,4 +13,9 @@ export class TabsPage {
     this.router.navigate(['/sign-in']);
   }
 
+  goHome() {
+    this.router.navigate(['']).then(()=>{
+      window.location.reload();
+    });
+  }
 }

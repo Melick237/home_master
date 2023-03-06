@@ -38,8 +38,13 @@ export class TasksComponent implements OnInit {
     this.roomService.getById(localStorage.getItem('roomId')!).subscribe({
       next: (result) => {
         console.log(result)
-        this.tasks = result.tasks.slice(0,3);
-        this.allTasks = result.tasks;
+        if(result?.task?.length > 2) {
+          this.tasks = result.task.slice(0,3);
+        } else {
+          this.tasks = result.task;
+        }
+
+        this.allTasks = result.task;
       },
       error:(error) => {
 
@@ -58,7 +63,6 @@ export class TasksComponent implements OnInit {
   }
 
   showAllTasks() {
-    this.tasks.push(...this.allTasks);
     this.tasks = this.allTasks;
     this.showAll = true;
   }

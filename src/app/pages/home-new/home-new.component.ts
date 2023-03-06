@@ -105,6 +105,7 @@ export class HomeNewComponent implements OnInit, OnDestroy {
           }
           this.personeService.add(update).subscribe({
             next: (result) => {
+              localStorage.setItem("roomId", roomId);
               this.router.navigateByUrl("");
             },
             error: (error) => {
@@ -146,6 +147,7 @@ export class HomeNewComponent implements OnInit, OnDestroy {
                 }
                 this.personeService.add(update).subscribe({
                   next: (result) => {
+                    localStorage.setItem("roomId", roomId);
                     this.router.navigateByUrl("");
                   },
                   error: (error) => {

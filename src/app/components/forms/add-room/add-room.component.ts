@@ -44,6 +44,8 @@ export class AddRoomComponent implements OnInit {
     total: 30.00
   };
 
+  created = false;
+
   public profileForm!: FormGroup;
   public housePictureForm!: FormGroup;
   public nameForm!: FormGroup;
@@ -273,6 +275,7 @@ export class AddRoomComponent implements OnInit {
             }
             this.personService.add(update).subscribe({
               next: (result) => {
+                this.created = true;
                 this.router.navigateByUrl("/home-new");
               },
               error: (error) => {
